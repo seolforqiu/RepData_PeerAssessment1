@@ -49,6 +49,7 @@ MedianTotalStepByDateNew <- median(TotalStepByDateNew,na.rm=TRUE)
 ## Are there differences in activity patterns between weekdays and weekends?
 ```{r}
 library(lattice)
+library(knitr)
 weekday = factor(weekdays(activityNew$date))
 levels(weekday) <- list(weekday=c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"), weekend=c("Saturday", "Sunday"))
 activityNew <- transform(activityNew, weekday = weekday)
@@ -69,4 +70,5 @@ names(AverageStepByIntervalWeekend) <- c("interval","NumberOfSteps","weekday")
 AverageStepByIntervalwkd <- rbind(AverageStepByIntervalWeekday,AverageStepByIntervalWeekend)
 
 xyplot(NumberOfSteps ~ interval| weekday, data=AverageStepByIntervalwkd, layout = c(1,2),type="l")
+
 ```

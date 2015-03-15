@@ -1,4 +1,9 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 
 ## Loading and preprocessing the data
@@ -17,7 +22,7 @@ TotalStepByDate <- tapply(activity$steps, dates_ch, sum)
 hist(TotalStepByDate, nclass = 10, main = "Total number of steps taken each day", xlab = "Total number of steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-1-1.png) 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png) 
 
 ```r
 MeanTotalStepByDate <- mean(TotalStepByDate,na.rm=TRUE)
@@ -32,7 +37,7 @@ AverageStepByInterval <- tapply(activity$steps, activity$interval, FUN=function(
 plot(AverageStepByInterval,type="l")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
 
 ```r
 Interval = factor(activity$interval)
@@ -58,6 +63,7 @@ MedianTotalStepByDateNew <- median(TotalStepByDateNew,na.rm=TRUE)
 
 ```r
 library(lattice)
+library(knitr)
 weekday = factor(weekdays(activityNew$date))
 levels(weekday) <- list(weekday=c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"), weekend=c("Saturday", "Sunday"))
 activityNew <- transform(activityNew, weekday = weekday)
@@ -80,4 +86,4 @@ AverageStepByIntervalwkd <- rbind(AverageStepByIntervalWeekday,AverageStepByInte
 xyplot(NumberOfSteps ~ interval| weekday, data=AverageStepByIntervalwkd, layout = c(1,2),type="l")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
